@@ -1,0 +1,30 @@
+{
+  "name": "newsletter-signup",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --exec babel-node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jontkoh/Newsletter-Signup.git"
+  },
+  "author": "jon koh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jontkoh/Newsletter-Signup/issues"
+  },
+  "homepage": "https://github.com/jontkoh/Newsletter-Signup#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.11.6",
+    "@babel/core": "^7.11.6",
+    "@babel/node": "^7.10.5",
+    "@babel/preset-env": "^7.11.5"
+  },
+  "dependencies": {
+    "@mailchimp/mailchimp_marketing": "^3.0.19",
+    "express": "^4.17.1"
+  }
+}
