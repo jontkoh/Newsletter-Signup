@@ -48,11 +48,11 @@ app.post('/', (req, res) => {
 });
 
 app.get("/success", (req, res) => {
-  res.sendFile("/build/success.html");
+  res.sendFile(__dirname + "/success.html");
 })
 
 app.get("/failure", (req, res) => {
-  res.sendFile("/build/failure.html");
+  res.sendFile(__dirname + "/failure.html");
 })
 
 app.post("/redirect", (req, res) => {
@@ -60,7 +60,7 @@ app.post("/redirect", (req, res) => {
 })
 
 app.get('/', (req, res) => {
-  res.sendFile("/build/signup.html");
+  res.sendFile(__dirname + "/signup.html");
 });
 
 app.listen(process.env.PORT || 3000, () => {
