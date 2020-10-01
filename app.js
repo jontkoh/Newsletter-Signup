@@ -1,15 +1,8 @@
 import express, { json, urlencoded } from 'express';
 import https from 'https';
-import mp from '@mailchimp/mailchimp_marketing';
+require('dotenv').config();
 
 const app = express();
-// mailchimp api key: f5b321f382d3de25c7b739a01fe24004-us4
-// list id: ee93e5115c
-
-//first create JS object
-//look for req body parameters from the docs and find whats REQUIRED
-//make sure to JSON stringify the JS object
-//do an https post req to send the data to mailchimp 
 
 app.use(urlencoded({extended: true}));
 app.use(json());
@@ -33,16 +26,14 @@ app.post('/', (req, res) => {
   }
 
   const jsonData = JSON.stringify(data);
-  const URL = "https://us4.api.mailchimp.com/3.0/lists/ee93e5115c"
+  const URL = `https://us4.api.mailchimp.com/3.0/lists/${process.env.MAILCHIMP_LIST_ID}`;
   const options = {
     method: 'POST',
-    auth: 'jonkoh:f5b321f382d3de25c7b739a01fe24004-us4'
+    auth: `jonkoh:${process.env.MAILCHIMP_API_KEY}`
   }
 
   const request = https.request(URL, options, (response) => {
     response.on("data", (d) => {
-      console.log(JSON.parse(d));
-      console.log(response.statusCode);
       if (response.statusCode === 200){
         res.redirect("/success");
       }
@@ -52,7 +43,7 @@ app.post('/', (req, res) => {
     })
   })
 
-  // request.write(jsonData);
+  request.write(jsonData);
   request.end();
 });
 
@@ -72,6 +63,6 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + "/signup.html");
 });
 
-app.listen(3000, () => {
+app.listen(process.env.PORT || 3000, () => {
   console.log("listening");
 });
